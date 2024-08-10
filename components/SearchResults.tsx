@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 
 import { useUserSearchResults } from "@/queries/useUserSearchResults";
 import { UserCard } from "./UserCard";
@@ -15,11 +15,10 @@ export const SearchResults = () => {
       ) : (
         <View>
           <Text>Results:</Text>
-          <View>
-            {query.data?.map((user) => (
-              <UserCard key={user.id} user={user} />
-            ))}
-          </View>
+          <FlatList
+            data={query.data}
+            renderItem={({ item }) => <UserCard user={item} />}
+          />
         </View>
       )}
     </View>
