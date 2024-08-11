@@ -1,5 +1,6 @@
 import { useReposByUser, GitHubRepository } from "@/queries/useReposByUser";
-import { View, Text } from "react-native";
+import { View, Text, FlatList } from "react-native";
+import { FlashList } from "@shopify/flash-list";
 
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -8,6 +9,8 @@ type RepoProps = {
 };
 
 const Repo = (props: RepoProps) => {
+  console.log("update", props.repo.name);
+
   return (
     <View className="flex-row w-full p-2 my-1 bg-gray-100 border-2 border-gray-200 shadow-md rounded-xl">
       <View className="flex-col flex-1">
@@ -38,10 +41,11 @@ export const ReposList = (props: ReposListProps) => {
   }
 
   return (
-    <View className="w-full px-2">
-      {query.data?.map((repo) => (
-        <Repo key={repo.id} repo={repo} />
-      ))}
-    </View>
+    <FlashList
+      data={query.data}
+      renderItem={({ item }) => <Repo repo={item} />}
+      estimatedItemSize={40}
+      nestedScrollEnabled={true}
+    />
   );
 };

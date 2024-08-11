@@ -11,6 +11,7 @@ const fetchUserDetails = async (
   username: string
 ): Promise<DetailedGitHubUser> => {
   try {
+    console.log(`Fetching details for user: ${username}`);
     const response = await axios.get<DetailedGitHubUser>(
       `https://api.github.com/users/${username}`
     );

@@ -28,6 +28,7 @@ export const fetchPublicRepositories = async (
 ): Promise<GitHubRepository[]> => {
   try {
     // Make a GET request to the GitHub API for the user's repositories
+    console.log(`Fetching repositories for user: ${username}`);
     const response = await axios.get<GitHubRepository[]>(
       `https://api.github.com/users/${username}/repos`,
       {

@@ -21,21 +21,19 @@ export default function Index() {
 
   return (
     <SafeAreaView>
-      <View className="flex w-full h-full ">
-        <View className="gap-3 px-2">
-          <Header small={searchValue.length > 0} onPress={onHeaderPress} />
-          <SearchBar
-            value={searchBarValue}
-            onChange={setSearchBarValue}
-            onClear={() => setSearchBarValue("")}
-            onSubmit={() => setSearchValue(searchBarValue)}
-          />
-          <SearchButton
-            onPress={() => setSearchValue(searchBarValue)}
-            isHidden={searchValue.length > 0}
-          />
-          {searchValue.length > 0 ? <SearchResults /> : <BottomTip />}
-        </View>
+      <View className="flex w-full h-full gap-3 px-2">
+        <Header small={searchValue.length > 0} onPress={onHeaderPress} />
+        <SearchBar
+          value={searchBarValue}
+          onChange={setSearchBarValue}
+          onClear={() => setSearchBarValue("")}
+          onSubmit={() => setSearchValue(searchBarValue)}
+        />
+        <SearchButton
+          onPress={() => setSearchValue(searchBarValue)}
+          isHidden={searchValue.length > 0}
+        />
+        {searchValue.length > 0 ? <SearchResults /> : <BottomTip />}
       </View>
     </SafeAreaView>
   );
