@@ -6,7 +6,7 @@ import { UserImage } from "./UserImage";
 import { ReposCount } from "./ReposCount";
 import { ExpandButton } from "./ExpandButton";
 import { CollapsableContainer } from "./CollapsableContainer";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { ReposList } from "./ReposList";
 import { FlatList } from "react-native";
 
@@ -15,13 +15,18 @@ type UserCardProps = {
 };
 
 export const UserCard = (props: UserCardProps) => {
+  console.log("update", props.user.login);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const detailedQuery = useDetailedUserInfo(props.user.login);
 
-  const expandedStyle = isExpanded ? "border-2 border-primary-light" : "";
+  const expandedStyle = isExpanded ? "border-l-2 border-primary-light" : "";
+
+  const MemoizedReposList = memo(() => (
+    <ReposList username={props.user.login} />
+  ));
 
   return (
-    <View className={`w-full  pb-1 rounded-xl my-1 ${expandedStyle}`}>
+    <View className={`w-full  pb-1 my-1 ${expandedStyle} rounded-4xl`}>
       <View className="flex-row items-center w-full bg-gray-100 border-2 border-gray-200 shadow-xl rounded-xl">
         <View className="flex-row items-center flex-1">
           <UserImage user={props.user} />
@@ -40,7 +45,7 @@ export const UserCard = (props: UserCardProps) => {
         </View>
       </View>
       <CollapsableContainer expanded={isExpanded}>
-        {isExpanded && <ReposList username={props.user.login} />}
+        {isExpanded && <MemoizedReposList />}
       </CollapsableContainer>
     </View>
   );

@@ -9,8 +9,6 @@ type RepoProps = {
 };
 
 const Repo = (props: RepoProps) => {
-  console.log("update", props.repo.name);
-
   return (
     <View className="flex-row w-full p-2 my-1 bg-gray-100 border-2 border-gray-200 shadow-md rounded-xl">
       <View className="flex-col flex-1">
@@ -37,7 +35,19 @@ export const ReposList = (props: ReposListProps) => {
   const query = useReposByUser(props.username);
 
   if (query.isLoading) {
-    return <Text>Loading repositories...</Text>;
+    return <Text className="text-gray-500">Loading repositories...</Text>;
+  }
+
+  if (query.isError) {
+    return <Text>Error: {query.error.message}</Text>;
+  }
+
+  if (!query.data || query.data.length === 0) {
+    return (
+      <Text className="text-gray-500">
+        No public repositories found for this user
+      </Text>
+    );
   }
 
   return (
