@@ -20,6 +20,7 @@ export const searchGitHubUsers = async (
 ): Promise<GitHubUser[]> => {
   try {
     // Make a GET request to the GitHub search API for users
+    console.log(`Searching for GitHub users with query: ${query}`);
     const response = await axios.get<GitHubSearchResult>(
       `https://api.github.com/search/users`,
       {

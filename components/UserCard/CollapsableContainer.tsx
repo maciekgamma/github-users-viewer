@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { LayoutChangeEvent, View, Text } from "react-native";
+import { LayoutChangeEvent, View } from "react-native";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -13,24 +13,25 @@ export const CollapsableContainer = ({
   children: React.ReactNode;
   expanded: boolean;
 }) => {
-  const [height, setHeight] = useState(0);
+  const [measuredHeight, setMeasuredHeight] = useState(0);
   const animatedHeight = useSharedValue(0);
 
   const onLayout = (event: LayoutChangeEvent) => {
-    const onLayoutHeight = event.nativeEvent.layout.height;
-
-    if (onLayoutHeight > 0 && height !== onLayoutHeight) {
-      setHeight(onLayoutHeight);
+    const newHeight = event.nativeEvent.layout.height;
+    if (newHeight > 2 && newHeight !== measuredHeight) {
+      setMeasuredHeight(newHeight);
     }
   };
 
   const collapsableStyle = useAnimatedStyle(() => {
-    animatedHeight.value = expanded ? withTiming(height) : withTiming(0);
+    animatedHeight.value = expanded
+      ? withTiming(measuredHeight, { duration: measuredHeight / 2 }) // Adjust the duration as needed
+      : withTiming(0, { duration: measuredHeight / 2 });
 
     return {
       height: animatedHeight.value,
     };
-  }, [expanded, height]);
+  }, [expanded, measuredHeight]);
 
   return (
     <Animated.View
