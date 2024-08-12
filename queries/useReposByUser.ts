@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 export interface GitHubRepository {
   id: number;
@@ -24,7 +24,8 @@ export interface GitHubUserReposResponse {
  * @returns Promise<GitHubRepository[]>
  */
 export const fetchPublicRepositories = async (
-  username: string
+  username: string,
+  page: number = 1
 ): Promise<GitHubRepository[]> => {
   try {
     // Make a GET request to the GitHub API for the user's repositories
@@ -34,7 +35,8 @@ export const fetchPublicRepositories = async (
         params: {
           type: "public", // Only public repositories
           sort: "updated", // Sort by the most recently updated
-          per_page: 100, // Adjust the number of repositories per page if needed
+          per_page: 100, // Number of repositories per page
+          page, // Specify the page number
         },
       }
     );
@@ -51,8 +53,14 @@ export const fetchPublicRepositories = async (
 };
 
 export const useReposByUser = (username: string) => {
-  return useQuery({
+  return useInfiniteQuery({
     queryKey: ["repos", username],
-    queryFn: () => fetchPublicRepositories(username),
+    queryFn: ({ pageParam = 1 }) =>
+      fetchPublicRepositories(username, pageParam),
+    getNextPageParam: (lastPage, allPages) => {
+      // If the last page has less than 100 items, we've reached the end
+      return lastPage.length === 100 ? allPages.length + 1 : undefined;
+    },
+    initialPageParam: 1,
   });
 };

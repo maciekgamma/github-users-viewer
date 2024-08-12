@@ -38,3 +38,5 @@ This is a simple app that allows you to search for GitHub users and view their p
 - Add more detailed error handling and user feedback
 - Check the UI/UX for accessibility and usability
 - Test the UI scaling on different devices and orientations
+- Add tests for components and hooks
+- Refactor the codebase to make it more readable and maintainable

@@ -42,7 +42,9 @@ export const ReposList = (props: ReposListProps) => {
     return <Text className="text-red-500">Error: {query.error.message}</Text>;
   }
 
-  if (!query.data || query.data.length === 0) {
+  const repos = query.data?.pages.flat();
+
+  if (repos?.length === 0) {
     return (
       <Text className="text-gray-500">
         No public repositories found for this user
@@ -52,7 +54,7 @@ export const ReposList = (props: ReposListProps) => {
 
   return (
     <FlashList
-      data={query.data}
+      data={repos}
       renderItem={({ item }) => <Repo repo={item} />}
       estimatedItemSize={65}
       nestedScrollEnabled={true}
