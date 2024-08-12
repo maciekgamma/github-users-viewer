@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, Keyboard } from "react-native";
 
 type SearchButtonProps = {
   onPress: () => void;
@@ -9,9 +9,14 @@ type SearchButtonProps = {
 const SearchButton = (props: SearchButtonProps) => {
   const visibility = props.isHidden ? "hidden" : "visible ";
 
+  const handlePress = () => {
+    Keyboard.dismiss();
+    props.onPress();
+  };
+
   return (
     <TouchableOpacity
-      onPress={props.onPress}
+      onPress={handlePress}
       className={`w-full px-4 py-3  rounded-xl visible bg-primary ${visibility}`}
     >
       <Text className="text-xl text-center text-white ">Search</Text>
