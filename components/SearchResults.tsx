@@ -1,4 +1,4 @@
-import { FlatList, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 import { useUserSearchResults } from "@/queries/useUserSearchResults";
 import { UserCard } from "./UserCard";

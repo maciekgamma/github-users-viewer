@@ -34,4 +34,7 @@ This is a simple app that allows you to search for GitHub users and view their p
 - Add assets such as images and icons
 - Animations and transitions may sometimes be janky. It should be refactored and optimized
 - Refactor queries to use a more efficient method of fetching data
+- Handle large number of repositories (currently limited to 100)
 - Add more detailed error handling and user feedback
+- Check the UI/UX for accessibility and usability
+- Test the UI scaling on different devices and orientations

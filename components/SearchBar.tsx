@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  View,
-  TextInput,
-  TouchableOpacity,
-  NativeSyntheticEvent,
-  TextInputChangeEventData,
-} from "react-native";
+import { View, TextInput, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { cssInterop } from "nativewind";
 
