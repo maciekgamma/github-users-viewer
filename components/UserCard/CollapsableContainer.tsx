@@ -28,13 +28,12 @@ export const CollapsableContainer = ({
   // Handler to measure the height of the child content
   const onLayout = (event: LayoutChangeEvent) => {
     const newHeight = event.nativeEvent.layout.height;
-    if (newHeight > 2 && newHeight !== measuredHeight) {
+    if (newHeight !== measuredHeight) {
       setMeasuredHeight(newHeight);
     }
   };
 
   const onFinishAnimation = () => {
-    console.log("Finished animation", animatedHeight.value, measuredHeight);
     // set the animation for actual measured height that could have changed
     animatedHeight.value = expanded ? measuredHeight : 0;
     setIsAnimating(false);

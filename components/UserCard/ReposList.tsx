@@ -5,6 +5,7 @@ import { FlashList } from "@shopify/flash-list";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import { LoadMoreButton } from "@/components/UserCard/LoadMoreButton";
+import { useMemo } from "react";
 
 type RepoProps = {
   repo: GitHubRepository;
@@ -36,6 +37,8 @@ type ReposListProps = {
 export const ReposList = (props: ReposListProps) => {
   const query = useReposByUser(props.username);
 
+  const repos = useMemo(() => query.data?.pages.flat(), [query.data]);
+
   if (query.isLoading) {
     return <Text className="text-gray-500">Loading repositories...</Text>;
   }
@@ -43,8 +46,6 @@ export const ReposList = (props: ReposListProps) => {
   if (query.isError) {
     return <Text className="text-red-500">Error: {query.error.message}</Text>;
   }
-
-  const repos = query.data?.pages.flat();
 
   if (repos?.length === 0) {
     return (
@@ -67,7 +68,12 @@ export const ReposList = (props: ReposListProps) => {
         nestedScrollEnabled={true}
         className="border-l-2 border-primary"
       />
-      {query.hasNextPage && <LoadMoreButton onPress={onLoadMore} />}
+      {query.hasNextPage && (
+        <LoadMoreButton
+          onPress={onLoadMore}
+          isLoading={query.isLoading || query.isFetchingNextPage}
+        />
+      )}
     </View>
   );
 };
