@@ -1,6 +1,6 @@
-# Welcome to your Expo app 👋
+# Welcome to GitHub Users Viewer
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a simple app that allows you to search for GitHub users and view their profiles. It was built with [Expo](https://expo.dev/), a platform for universal React applications.
 
 ## Get started
 
@@ -16,35 +16,22 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
     npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+3. Use ExpoGo to view the app on your phone
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   - [iOS App Store](https://apps.apple.com/app/expo-go/id982107779)
+   - [Google Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+   ## Troubleshooting
 
-## Get a fresh project
+   Sometimes hot reloading doesn't work as expected. If you encounter any issues, try restarting the app and clearing the cache.
 
-When you're ready, run:
+   ```bash
+   npx expo start-clear
+   ```
 
-```bash
-npm run reset-project
-```
+## Possible improvements
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Add assets such as images and icons
+- Animations and transitions may sometimes be janky. It should be refactored and optimized
+- Refactor queries to use a more efficient method of fetching data
+- Add more detailed error handling and user feedback

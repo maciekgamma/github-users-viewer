@@ -20,7 +20,6 @@ export const searchGitHubUsers = async (
 ): Promise<GitHubUser[]> => {
   try {
     // Make a GET request to the GitHub search API for users
-    console.log(`Searching for GitHub users with query: ${query}`);
     const response = await axios.get<GitHubSearchResult>(
       `https://api.github.com/search/users`,
       {
@@ -37,9 +36,7 @@ export const searchGitHubUsers = async (
     // Return the list of users
     return users;
   } catch (error) {
-    console.error(`Error searching for GitHub users: ${error}`);
-    // Handle the error appropriately
-    return [];
+    throw error; // Rethrow to be handled by the calling function
   }
 };
 export const useUserSearchResults = () => {

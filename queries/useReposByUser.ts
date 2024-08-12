@@ -28,7 +28,6 @@ export const fetchPublicRepositories = async (
 ): Promise<GitHubRepository[]> => {
   try {
     // Make a GET request to the GitHub API for the user's repositories
-    console.log(`Fetching repositories for user: ${username}`);
     const response = await axios.get<GitHubRepository[]>(
       `https://api.github.com/users/${username}/repos`,
       {
@@ -46,9 +45,8 @@ export const fetchPublicRepositories = async (
     // Return the list of repositories
     return repositories;
   } catch (error) {
-    console.error(`Error fetching repositories for user ${username}: ${error}`);
     // Handle the error appropriately
-    return [];
+    throw error; // Rethrow to be handled by the calling function
   }
 };
 

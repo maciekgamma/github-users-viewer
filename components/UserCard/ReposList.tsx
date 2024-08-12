@@ -35,25 +35,20 @@ export const ReposList = (props: ReposListProps) => {
   const query = useReposByUser(props.username);
 
   if (query.isLoading) {
-    console.log("loading");
     return <Text className="text-gray-500">Loading repositories...</Text>;
   }
 
   if (query.isError) {
-    console.log("error");
-    return <Text>Error: {query.error.message}</Text>;
+    return <Text className="text-red-500">Error: {query.error.message}</Text>;
   }
 
   if (!query.data || query.data.length === 0) {
-    console.log("no repos");
     return (
       <Text className="text-gray-500">
         No public repositories found for this user
       </Text>
     );
   }
-
-  console.log("repos loaded");
 
   return (
     <FlashList

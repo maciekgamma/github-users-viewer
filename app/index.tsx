@@ -1,14 +1,17 @@
-import SearchBar from "@/components/SearchBar";
-import { SafeAreaView } from "react-native-safe-area-context";
-
+// React and React Native imports
 import { useState } from "react";
-import SearchButton from "@/components/SearchButton";
-import { View, Text } from "react-native";
-import Header from "@/components/Header";
-import { useRouter } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { View } from "react-native";
+
+// Context and custom hook imports
 import { useSearch } from "@/contexts/SearchContext";
-import { BottomTip } from "@/components/BottomTip";
+
+// Component imports
+import Header from "@/components/Header";
+import SearchBar from "@/components/SearchBar";
+import SearchButton from "@/components/SearchButton";
 import { SearchResults } from "@/components/SearchResults";
+import { BottomTip } from "@/components/BottomTip";
 
 export default function Index() {
   const [searchBarValue, setSearchBarValue] = useState("");
@@ -33,6 +36,7 @@ export default function Index() {
           onPress={() => setSearchValue(searchBarValue)}
           isHidden={searchValue.length > 0}
         />
+        {/* Show the results if there is a search value else show the tip */}
         {searchValue.length > 0 ? <SearchResults /> : <BottomTip />}
       </View>
     </SafeAreaView>

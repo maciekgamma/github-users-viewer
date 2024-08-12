@@ -11,13 +11,11 @@ const fetchUserDetails = async (
   username: string
 ): Promise<DetailedGitHubUser> => {
   try {
-    console.log(`Fetching details for user: ${username}`);
     const response = await axios.get<DetailedGitHubUser>(
       `https://api.github.com/users/${username}`
     );
     return response.data;
   } catch (error) {
-    console.error(`Error fetching details for user ${username}: ${error}`);
     throw error; // Rethrow to be handled by the calling function
   }
 };

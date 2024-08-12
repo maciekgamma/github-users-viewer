@@ -15,7 +15,6 @@ type UserCardProps = {
 };
 
 export const UserCard = (props: UserCardProps) => {
-  console.log("update", props.user.login);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const detailedQuery = useDetailedUserInfo(props.user.login);
 
@@ -25,8 +24,8 @@ export const UserCard = (props: UserCardProps) => {
 
   return (
     <View className={`w-full  pb-1 my-1 `}>
-      <View className="flex-row items-center w-full bg-gray-100 border-2 border-gray-200 shadow-xl rounded-xl">
-        <View className="flex-row items-center flex-1">
+      <View className="flex-row items-center w-full bg-gray-100 border-2 border-gray-200 shadow-lg rounded-xl">
+        <View className="flex-row items-center flex-1 pb-1 pl-1">
           <UserImage user={props.user} />
           <UserInfo
             user={props.user}
@@ -43,7 +42,7 @@ export const UserCard = (props: UserCardProps) => {
         </View>
       </View>
       <CollapsableContainer expanded={isExpanded}>
-        {isExpanded && <MemoizedReposList />}
+        <MemoizedReposList />
       </CollapsableContainer>
     </View>
   );
