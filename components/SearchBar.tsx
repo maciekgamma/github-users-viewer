@@ -37,6 +37,7 @@ const SearchBar = (props: SearchBarProps) => {
       <TouchableOpacity
         onPress={props.onClear}
         className={`${clearButtonClass}`}
+        testID="clear-button"
       >
         <MaterialCommunityIcons
           name="close-circle-outline"

@@ -2073,6 +2073,15 @@
     "@babel/runtime" "^7.12.5"
     react-error-boundary "^3.1.0"
 
+"@testing-library/react-native@^12.5.3":
+  version "12.5.3"
+  resolved "https://registry.yarnpkg.com/@testing-library/react-native/-/react-native-12.5.3.tgz#0ea753efed505698a79ba4a0d42d4b79cd272abc"
+  integrity sha512-wSaplzjx51OVJI7MU8Mi2kxwfW0dYETn3jqSVHxtIXmEnmlWXk6f69sEaBbzdp6iDzhFB5E6rDWveqf5V/ap2A==
+  dependencies:
+    jest-matcher-utils "^29.7.0"
+    pretty-format "^29.7.0"
+    redent "^3.0.0"
+
 "@tootallnate/once@2":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
@@ -7241,6 +7250,14 @@ recyclerlistview@4.2.0:
     lodash.debounce "4.0.8"
     prop-types "15.8.1"
     ts-object-utils "0.0.5"
+
+redent@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/redent/-/redent-3.0.0.tgz#e557b7998316bb53c9f1f56fa626352c6963059f"
+  integrity sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==
+  dependencies:
+    indent-string "^4.0.0"
+    strip-indent "^3.0.0"
 
 regenerate-unicode-properties@^10.1.0:
   version "10.1.1"
