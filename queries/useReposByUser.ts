@@ -59,7 +59,7 @@ export const useReposByUser = (username: string) => {
       fetchPublicRepositories(username, pageParam),
     getNextPageParam: (lastPage, allPages) => {
       // If the last page has less than 100 items, we've reached the end
-      return lastPage.length === 100 ? allPages.length + 1 : undefined;
+      return lastPage.length < 100 ? undefined : allPages.length + 1;
     },
     initialPageParam: 1,
   });

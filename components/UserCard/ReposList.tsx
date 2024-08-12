@@ -1,8 +1,10 @@
 import { useReposByUser, GitHubRepository } from "@/queries/useReposByUser";
-import { View, Text, FlatList } from "react-native";
+import { View, Text } from "react-native";
 import { FlashList } from "@shopify/flash-list";
 
 import { MaterialIcons } from "@expo/vector-icons";
+
+import { LoadMoreButton } from "@/components/UserCard/LoadMoreButton";
 
 type RepoProps = {
   repo: GitHubRepository;
@@ -52,13 +54,20 @@ export const ReposList = (props: ReposListProps) => {
     );
   }
 
+  const onLoadMore = () => {
+    query.fetchNextPage();
+  };
+
   return (
-    <FlashList
-      data={repos}
-      renderItem={({ item }) => <Repo repo={item} />}
-      estimatedItemSize={65}
-      nestedScrollEnabled={true}
-      className="border-l-2 border-primary"
-    />
+    <View className="w-full">
+      <FlashList
+        data={repos}
+        renderItem={({ item }) => <Repo repo={item} />}
+        estimatedItemSize={65}
+        nestedScrollEnabled={true}
+        className="border-l-2 border-primary"
+      />
+      {query.hasNextPage && <LoadMoreButton onPress={onLoadMore} />}
+    </View>
   );
 };
