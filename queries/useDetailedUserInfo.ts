@@ -7,7 +7,7 @@ export interface DetailedGitHubUser extends GitHubUser {
   public_repos: number; // Number of public repositories
 }
 
-const fetchUserDetails = async (
+export const fetchUserDetails = async (
   username: string
 ): Promise<DetailedGitHubUser> => {
   try {
