@@ -62,7 +62,7 @@ describe("useReposByUser", () => {
   it("should return repositories for a user on success", async () => {
     mock
       .onGet("https://api.github.com/users/octocat/repos", {
-        params: { type: "public", sort: "updated", per_page: 100, page: 1 },
+        params: { type: "public", sort: "updated", per_page: 20, page: 1 },
       })
       .reply(200, mockRepos);
 
@@ -78,7 +78,7 @@ describe("useReposByUser", () => {
   it("should handle errors correctly", async () => {
     mock
       .onGet("https://api.github.com/users/octocat/repos", {
-        params: { type: "public", sort: "updated", per_page: 100, page: 1 },
+        params: { type: "public", sort: "updated", per_page: 20, page: 1 },
       })
       .reply(404);
 

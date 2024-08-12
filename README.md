@@ -31,11 +31,10 @@ This is a simple app that allows you to search for GitHub users and view their p
 
 ## Possible improvements
 
+- Add more tests, most importantly E2E tests
 - Add assets such as images and icons
-- Animations and transitions may sometimes be janky. It should be refactored and optimized
 - Refactor queries to use a more efficient method of fetching data
 - Add more detailed error handling and user feedback
 - Check the UI/UX for accessibility and usability
 - Test the UI scaling on different devices and orientations
-- Add tests for components and hooks
 - Refactor the codebase to make it more readable and maintainable
