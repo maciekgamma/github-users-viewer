@@ -7,13 +7,13 @@ This is a simple app that allows you to search for GitHub users and view their p
 1. Install dependencies
 
    ```bash
-   npm install
+   yarn
    ```
 
 2. Start the app
 
    ```bash
-    npx expo start
+   yarn start
    ```
 
 3. Use ExpoGo to view the app on your phone
@@ -26,7 +26,7 @@ This is a simple app that allows you to search for GitHub users and view their p
    Sometimes hot reloading doesn't work as expected. If you encounter any issues, try restarting the app and clearing the cache.
 
    ```bash
-   npx expo start-clear
+   yarn start-clear
    ```
 
 ## Possible improvements
