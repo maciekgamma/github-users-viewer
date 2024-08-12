@@ -1,5 +1,5 @@
 // React and React Native imports
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LayoutChangeEvent, View } from "react-native";
 
 // Reanimated imports
@@ -7,6 +7,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
+  runOnJS,
 } from "react-native-reanimated";
 
 // CollapsableContainer component
@@ -19,6 +20,7 @@ export const CollapsableContainer = ({
 }) => {
   // State to store the measured height of the child content
   const [measuredHeight, setMeasuredHeight] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   // Shared value for animated height
   const animatedHeight = useSharedValue(0);
@@ -31,16 +33,52 @@ export const CollapsableContainer = ({
     }
   };
 
+  const onFinishAnimation = () => {
+    console.log("Finished animation", animatedHeight.value, measuredHeight);
+    // set the animation for actual measured height that could have changed
+    animatedHeight.value = expanded ? measuredHeight : 0;
+    setIsAnimating(false);
+  };
+
+  // Effect to trigger the height animation
+  useEffect(() => {
+    if (isAnimating) {
+      return;
+    }
+
+    if (expanded) {
+      animatedHeight.value = withTiming(
+        measuredHeight,
+        {
+          duration: 800,
+        },
+        (isFinished) => {
+          if (isFinished) {
+            runOnJS(onFinishAnimation)();
+          }
+        }
+      );
+    } else {
+      animatedHeight.value = withTiming(
+        0,
+        {
+          duration: 800,
+        },
+        (isFinished) => {
+          if (isFinished) {
+            runOnJS(onFinishAnimation)();
+          }
+        }
+      );
+    }
+  }, [expanded, measuredHeight]);
+
   // Animated style for the collapsable container
   const collapsableStyle = useAnimatedStyle(() => {
-    animatedHeight.value = expanded
-      ? withTiming(measuredHeight, { duration: measuredHeight / 2 }) // Expand with animation
-      : withTiming(0, { duration: measuredHeight / 2 }); // Collapse with animation
-
     return {
       height: animatedHeight.value,
     };
-  }, [expanded, measuredHeight]);
+  });
 
   return (
     <Animated.View

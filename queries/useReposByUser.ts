@@ -35,7 +35,7 @@ export const fetchPublicRepositories = async (
         params: {
           type: "public", // Only public repositories
           sort: "updated", // Sort by the most recently updated
-          per_page: 100, // Number of repositories per page
+          per_page: 20, // Number of repositories per page
           page, // Specify the page number
         },
       }
@@ -58,8 +58,8 @@ export const useReposByUser = (username: string) => {
     queryFn: ({ pageParam = 1 }) =>
       fetchPublicRepositories(username, pageParam),
     getNextPageParam: (lastPage, allPages) => {
-      // If the last page has less than 100 items, we've reached the end
-      return lastPage.length < 100 ? undefined : allPages.length + 1;
+      // If the last page has less than 20 items, we've reached the end
+      return lastPage.length < 20 ? undefined : allPages.length + 1;
     },
     initialPageParam: 1,
   });
